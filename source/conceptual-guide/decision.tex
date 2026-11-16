@@ -1,0 +1,53 @@
+\clearpage\colorlet{Accent}{Blue}\pdfbookmark[0]{The decision guide}{toolkit}
+\tagline{PUT IT TO WORK \quad / \quad A DECISION GUIDE}
+\vspace{4pt}\headline{Which tool do I need?}
+\vspace{5pt}
+On a test, the chapter title usually tells you which method to use. Outside a textbook, the first task is figuring out what kind of answer the situation calls for. Read down the left column until you recognize what you are trying to find.
+
+\vspace{7pt}
+{\setlength{\tabcolsep}{7pt}\renewcommand\arraystretch{1.44}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}>{\raggedright\arraybackslash}p{1.55in}>{\raggedright\arraybackslash}Xr@{}}
+\toprule
+\smallcap{IF YOU WANT\ldots}&\smallcap{REACH FOR\ldots}&\smallcap{DO NOT OVERLOOK}&\smallcap{NO.}\\
+\midrule
+What a quantity approaches & A limit & Its value at the point is a separate question. & \chaplink{01}{01}\\
+A rate at a particular instant & A derivative & Start with what changes over an interval. & \chaplink{02}{02}\\
+The rate of a connected quantity & The chain rule & Keep the time dependence until after differentiating. & \chaplink{03}{03}\\
+The best allowable choice & Constrained optimization & Endpoints, feasibility, and other candidates. & \chaplink{04}{04}\\
+A nearby value with stated accuracy & A Taylor approximation & The remainder is what backs up the claim. & \chaplink{05}{05}\\
+A total from a changing rate & A definite integral & Net and gross totals may answer different questions. & \chaplink{06}{06}\\
+The rate at which a total grows & The Fundamental Theorem & If the boundary moves, multiply by its speed. & \chaplink{07}{07}\\
+A total over an unbounded interval & An improper integral & A rate approaching zero does not prove convergence. & \chaplink{08}{08}\\
+A trajectory from a rule about change & A differential equation & Fitting data and testing a prediction are different. & \chaplink{09}{09}\\
+A defensible place to stop & A remainder bound & A guarantee can be valid without being sharp. & \chaplink{10}{10}\\
+\bottomrule
+\end{tabularx}}
+\vspace{14pt}
+
+\sectiontitle{What ten problems cannot cover}
+This is a map of single-variable calculus, not a full syllabus. It's deliberately light on symbolic differentiation and integration drills, and it does not survey multivariable or vector calculus. It gives you the questions those larger courses build on: What changes locally? What accumulates? What does the model predict? How good is the answer?
+
+\folio{Decision guide}
+
+\clearpage\colorlet{Accent}{Teal}\pdfbookmark[0]{Transfer test notes}{key}
+\tagline{PUT IT TO WORK \quad / \quad TRANSFER TEST NOTES}
+\vspace{4pt}\headline{Same idea, different setting}
+\vspace{4pt}
+Try the questions first. These brief answers identify what should carry over when the original cart, ladder, box, or coffee cup is gone.
+
+\vspace{6pt}
+\newcommand{\key}[3]{\par\vspace{5pt}\noindent
+\begin{minipage}{\linewidth}\raggedright
+{\sffamily\bfseries\color{Teal}\chaplink{#1}{#1}\enspace #2.}\enspace#3
+\end{minipage}\par}
+\key{01}{The size matters}{\(\lvert x^2\cos(1/x^3)\rvert\le x^2\), so the limit is zero. How fast the cosine cycles does not affect the bound.}
+\key{02}{The sensor estimate}{Use readings on both sides of the middle time. Divide the difference in positions by the elapsed time between them. Compare estimates for several intervals or against a reference. Shorter intervals can expose noise or limited resolution.}
+\key{03}{The widening tank}{The inflow required is \(dV/dt=A(h)\,dh/dt\), where \(A(h)\) is the area of the water surface at height \(h\). If that area increases, holding the rise speed fixed requires more inflow.}
+\key{04}{The depth cap}{The allowable interval is now \([0,2]\). Both original derivative roots lie outside it, and \(V'(0)>0\), so the volume increases across the interval. The best allowable cut is 2 inches.}
+\key{05}{Rounding versus the bound}{The value is between \(0.904833\) and \(0.905\). Every number there rounds to \(0.905\) at three decimal places. That interval alone does not determine the fourth decimal place.}
+\key{06}{The battery log}{Sum \(I\,\Delta t\) for net change in charge and \(\lvert I\rvert\,\Delta t\) for total charge moved, using representative currents and actual interval widths. Amperes times seconds gives coulombs.}
+\key{07}{The accelerated clock}{The accumulated amount as a function of \(x\) is \(\int_0^{3x}q(t)\,dt\), so its derivative is \(3q(3x)\) wherever \(q\) is continuous at the edge.}
+\key{08}{Two decaying tails}{From \(1\) to \(T\), the totals are \(\ln T\) and \(1-1/T\), respectively. Only the second stays finite in the limit.}
+\key{09}{The room changes}{Carry the coffee's temperature forward continuously at the move. Replace the ambient temperature in the rate law. If airflow or other conditions change, the fitted \(k\) might also change.}
+\key{10}{The cheaper answer}{Count total work, not just terms. A method with fewer terms may spend more time or memory per term. Compare cost and numerical reliability at the same guaranteed accuracy.}
+\folio{Transfer test notes}

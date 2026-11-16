@@ -1,0 +1,177 @@
+\chapter{Blue}{06}{What do the changes add up to?}{ACCUMULATION \quad THE DEFINITE INTEGRAL}
+\openq{If the cart goes backward and then forward, how can it travel 2 meters but end up only \(\tfrac23\) meter from where it started?}
+\plate{
+\begin{tikzpicture}[x=4.45cm,y=.59cm]
+\fill[RustTint] (0,0)--plot[domain=0:1,samples=35] (\x,{\x*\x-1})--cycle;
+\fill[TealTint] (1,0)--plot[domain=1:2,samples=35] (\x,{\x*\x-1})--(2,0)--cycle;
+\draw[axis] (-.08,0)--(2.24,0) node[lab,right] {\(t\) (s)};
+\draw[axis] (0,-1.43)--(0,3.5) node[lab,above] {\(v\) (m/s)};
+\draw[fcurve,domain=0:2,samples=75] plot (\x,{\x*\x-1});
+\foreach \i in {0,...,7}{
+ \pgfmathsetmacro{\val}{((\i+.5)/4)^2-1}
+ \draw[guide] ({\i/4},0) rectangle ++(.25,\val);}
+\node[lab,below] at (1,0) {\(1\)};
+\node[lab,below] at (2,0) {\(2\)};
+\node[lab,text=Rust,anchor=west] at (.37,-1.44) {Backward: \(-\tfrac23\) m};
+\node[lab,text=Teal,anchor=west] at (2.06,2.25) {Forward: \(+\tfrac43\) m};
+\node[lab,anchor=west] at (2.06,1.45) {Dashed: midpoint slices};
+\end{tikzpicture}
+}{Each rectangle estimates a short change in position. Adding the rectangles with signs measures net change. Adding their magnitudes measures total travel.}
+
+\sectiontitle{Why this problem earned its place}
+A positive velocity for the whole trip would allow two different questions to look like one. The reversal forces you to say what you mean by \emph{how far}. Where did the cart end up relative to its start? How much ground did it cover? Those are different measurements made from the same data. This is why the sign of each contribution matters.
+
+\sectiontitle{Where it sits in calculus}
+The definite integral is built from many small contributions. Here a representative velocity multiplied by a short time gives a small change in position. Refining the partition turns the sum into an integral. The same construction works for flow times a short duration or linear mass density times a short length. The antiderivative makes many of these calculations quicker, but accumulation is what tells you what to calculate.
+
+\sectiontitle{What to notice in the Python}
+The program forms one array of midpoint velocity times time width. It sums that array for displacement and sums its absolute values for distance. That single change in the command expresses the difference between \(\int v\,dt\) and \(\int |v|\,dt\).
+
+\bridge{Limits of sums}{Signed accumulation}{Fundamental Theorem}
+\tryit{A battery current log has positive readings when charging and negative readings when discharging. How would you calculate net charge gained and total charge moved from the same file?}
+\folio{Accumulation}
+
+\chapter{Blue}{07}{How fast is a total changing?}{THE BRIDGE \quad FUNDAMENTAL THEOREM OF CALCULUS}
+\openq{How can you know how fast a total is growing without first working out the total?}
+\plate{
+\begin{tikzpicture}[x=6.13cm,y=2.15cm]
+\fill[BlueTint] (0,0)--plot[domain=0:.81,samples=35] (\x,{cos((\x*\x) r)})--(.81,0)--cycle;
+\fill[RustTint] (.81,0)--plot[domain=.81:1,samples=25] (\x,{cos((\x*\x) r)})--(1,0)--cycle;
+\draw[axis] (-.04,0)--(1.31,0) node[lab,right] {\(t\)};
+\draw[axis] (0,-.07)--(0,1.13);
+\draw[fcurve,domain=0:1.24,samples=65] plot (\x,{cos((\x*\x) r)});
+\draw[guide] (.81,0)--(.81,.791) (1,0)--(1,.5403);
+\node[lab] at (.41,.38) {Already counted};
+\node[lab,right,text=Rust] (extra) at (1.38,.68) {New strip};
+\draw[lead] (extra.west) to[bend left=9] (.935,.31);
+\node[lab,right] at (1.38,.42) {\(\text{height}\approx\cos(x^4)\)};
+\node[lab,right] at (1.38,.23) {\(\text{width}\approx2x\,\Delta x\)};
+\node[lab,below left] at (.81,0) {\(x^2\)};
+\node[lab,below right] at (1,0) {\((x+\Delta x)^2\)};
+\end{tikzpicture}
+}{The curve is \(f(t)=\cos(t^2)\), shown at \(x=0.9\) with an exaggerated positive step. Dividing the strip's area by \(\Delta x\) gives approximately its height times the speed of the edge.}
+
+\sectiontitle{Why this problem earned its place}
+The question is deliberately set up so that hunting for an elementary antiderivative is not a useful plan. You don't need one. When the boundary moves a little, the previously accumulated area cancels in the difference between the two totals. The question concerns only the new strip. This makes a big theorem feel like a natural answer to a visible problem.
+
+\sectiontitle{Where it sits in calculus}
+For continuous \(f\), the rate of change of \(G(u)=\int_0^u f(t)\,dt\) is \(G'(u)=f(u)\). This is one direction of the Fundamental Theorem. The other direction lets you evaluate a definite integral from an antiderivative at the two endpoints. Here \(u=x^2\), so the chain rule also supplies \(u'=2x\). The result joins the accumulation in 06 to the reasoning about coupled rates in 03.
+
+\sectiontitle{What to notice in the Python}
+One route evaluates \(\cos(x^4)\,2x\) directly. The independent numerical route estimates areas at two nearby inputs, then differences them. The match is a check. The direct formula comes from seeing why the nearby area, not the old total, determines the derivative.
+
+\bridge{Chain rule + sums}{Rates and totals fit}{Variable boundaries}
+\tryit{A tank receives a variable inflow \(q(t)\). A display shows the amount received by clock time \(3x\). How fast does the displayed total change with respect to \(x\)?}
+\folio{The Fundamental Theorem}
+
+\chapter{Blue}{08}{What if the interval never ends?}{ACCUMULATION \quad IMPROPER INTEGRALS}
+\openq{If water keeps entering the tank forever but the flow weakens, does the total have to be infinite?}
+\plate{
+\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{scope}
+\node[lab,anchor=west,font=\sffamily\bfseries\small] at (0,2.75) {Both rates tend to zero};
+\draw[axis] (0,0)--(6.27,0) node[lab,right] {Time};
+\draw[axis] (0,0)--(0,2.53);
+\draw[fcurve,domain=0:12,samples=90] plot ({\x*.48},{2.22*\x*exp(-\x)});
+\draw[bcurve,dashed,domain=0:12,samples=90] plot ({\x*.48},{2.22/(1+\x)});
+\node[lab,text=Blue] at (2.33,1.42) {\(1/(1+t)\)};
+\node[lab,text=Teal] at (2.12,.73) {\(t e^{-t}\)};
+\end{scope}
+\begin{scope}[shift={(7.62,0)}]
+\node[lab,anchor=west,font=\sffamily\bfseries\small] at (0,2.75) {Only one total stays bounded};
+\draw[axis] (0,0)--(6.19,0) node[lab,right] {Cutoff \(T\)};
+\draw[axis] (0,0)--(0,2.54);
+\draw[guide] (0,.64)--(5.87,.64);
+\draw[fcurve,domain=0:19,samples=85] plot ({\x*.307},{.64*(1-(1+\x)*exp(-\x))});
+\draw[bcurve,dashed,domain=0:19,samples=85] plot ({\x*.307},{.64*ln(1+\x)});
+\node[lab,left] at (0,.64) {\(1\)};
+\node[lab,text=Blue] at (4.02,2.02) {\(\ln(1+T)\)};
+\node[lab,text=Teal] at (4.21,.90) {Levels off at 1};
+\end{scope}
+\end{tikzpicture}
+}{The left graph depicts instantaneous rate. The right graph depicts accumulated amount so far. Both rates vanish, but the slower-decaying one keeps adding enough to make the total grow without bound.}
+
+\sectiontitle{Why this problem earned its place}
+It gives a direct counterexample to a tempting intuition: if the input becomes negligible, surely the total will settle. The contrast between exponential decay and \(1/(1+t)\) makes that reasoning fail in plain sight. You learn to ask not only whether the rate shrinks, but whether it shrinks fast enough.
+
+\sectiontitle{Where it sits in calculus}
+A definite integral up to a finite cutoff \(T\) is ordinary accumulation. An improper integral asks if those finite totals approach a finite limit as \(T\) grows. Here integration by parts supplies \(1-(T+1)e^{-T}\), and the limit supplies the total \(1\) liter. That separation matters. The same question appears when checking whether a probability density has finite mass or an infinite series has a finite sum.
+
+\sectiontitle{What to notice in the Python}
+The program compares midpoint sums with the exact formula at several finite cutoffs. It also plots the slow total on a logarithmic time axis to show growth over a wider range. No simulation needs to run forever, and no finite run by itself proves convergence.
+
+\bridge{Definite integral + limit}{Convergent totals}{Series tests}
+\tryit{Compare the tails of the two rates \(1/t\) and \(1/t^2\) for \(t\geq1\). Both tend to zero. Which has a finite accumulated total? Check using finite cutoffs first.}
+\folio{Accumulation}
+
+\chapter{Rust}{09}{Can a rate law predict?}{MODELING \quad DIFFERENTIAL EQUATIONS}
+\openq{We don't know the entire cooling curve. Can one rule about change and one follow-up reading give us a useful prediction?}
+\plate{
+\begin{tikzpicture}[x=.33cm,y=.035cm]
+\draw[axis] (0,14)--(39.2,14) node[lab,right] {Time (min)};
+\draw[axis] (0,14)--(0,100) node[lab,above] {\(T\) (\({}^{\circ}\)C)};
+\draw[guide] (0,20)--(38,20);
+\draw[guide] (0,40)--(22.386,40)--(22.386,14);
+\draw[fcurve,domain=0:37.6,samples=90] plot (\x,{20+70*exp(-.05596158*\x)});
+\fill[Blue] (0,90) circle (2.75pt) (10,60) circle (2.75pt);
+\fill[Rust] (22.386,40) circle (2.75pt);
+\node[lab,left] at (0,90) {\(90\)};
+\node[lab,left] at (0,60) {\(60\)};
+\node[lab,left] at (0,40) {\(40\)};
+\node[lab,left] at (0,20) {\(20\)};
+\node[lab,below] at (10,14) {\(10\)};
+\node[lab,below] at (22.386,14) {\(22.4\)};
+\node[lab,text=Blue,above right] at (10,60) {Reading used for fit};
+\node[lab,text=Rust,above right] at (22.386,40) {Predicted crossing};
+\node[lab] at (32.8,25.5) {Room temperature};
+\end{tikzpicture}
+}{The supplied initial temperature sets the starting point. The 10-minute reading fixes a parameter. The crossing near 22.4 minutes is a model prediction, not another measurement.}
+
+\sectiontitle{Why this problem earned its place}
+In the cart problems, you are handed the motion or rate to analyze. Here you don't have the function you want. Instead, you hypothesize a rule about how it changes, use a reading to fit the rule, and get a prediction that a later observation could contradict. It's a small, complete example of using calculus to construct and test a model.
+
+\sectiontitle{Where it sits in calculus}
+With \(E=T-T_{\mathrm{room}}\), the rule is \(E'=-kE\). The derivative measures the rate, and the equation ties that rate to the current state. A starting condition picks a trajectory once \(k\) is specified. The follow-up observation estimates \(k\). This pattern recurs in circuits, population models, and feedback systems, even when the equations must be solved numerically.
+
+\sectiontitle{What to notice in the Python}
+The exponential solution and the Euler loop express the same rule differently. The loop updates the state by adding rate times elapsed time. Reducing the step size improves agreement with the exact model in this example. Agreement between two implementations does not test whether actual coffee behaves that way.
+
+\bridge{Instantaneous rate}{A rule for the state}{Numerical simulation}
+\tryit{The cup is moved to a warmer room after 10 minutes. What should the model carry forward without a jump? What part of the rule must change?}
+\folio{Modeling}
+
+\chapter{Rust}{10}{When can you stop adding terms?}{INFINITE PROCESSES \quad SERIES AND ERROR}
+\openq{It isn't enough to know an answer is getting closer. How can you certify the first step at which it is close enough?}
+\plate{
+\begin{tikzpicture}[x=1.35cm,y=.19cm]
+\draw[axis] (0,.05)--(9.45,.05) node[lab,right] {\(N\)};
+\draw[axis] (0,.05)--(0,16.2) node[lab,above] {Error \((\times 10^{-6})\)};
+\foreach \y/\val in {1/994,4/997,7/1000,10/1003,13/1006,16/1009}{
+ \draw[draw=Faint,thin] (-.06,\y)--(8.95,\y);
+ \node[lab,left] at (-.06,\y) {\val};}
+\draw[rcurve,dash pattern=on 1.05pt off 1.9pt] (0,7)--(8.95,7);
+\node[lab,text=Rust,anchor=west] at (6.48,8.03) {Tolerance};
+\foreach \xx/\N/\a/\b/\o in {1/497/11.01606/13.02812/12.02411,2.65/498/9.00401/11.00802/10.00802,4.3/499/7.00000/8.99601/8.00000,5.95/500/5.00399/6.99205/6.00000,7.6/501/3.01594/4.99609/4.00798}{
+ \draw[bcurve,line width=1.2pt] (\xx,\a)--(\xx,\b);
+ \draw[bcurve] (\xx-.12,\a)--(\xx+.12,\a) (\xx-.12,\b)--(\xx+.12,\b);
+ \fill[Teal] (\xx,\o) circle (1.75pt);
+ \node[lab,below] at (\xx,0) {\N};}
+\node[lab,text=Rust] (fail) at (3.86,12.15) {499 fails};
+\draw[lead] (fail.south) -- (4.26,9.13);
+\node[lab,text=Teal] (success) at (6.85,13.95) {500 succeeds};
+\draw[lead] (success.south west) to[bend right=13] (6.02,6.91);
+\end{tikzpicture}
+}{Blue bars show bounds on the true error. Dots are numerical estimates. At 499 the error is strictly above its lower bound, which equals the tolerance. At 500 the upper bound is below the tolerance. The vertical scale is magnified.}
+
+\sectiontitle{Why this problem earned its place}
+It exposes the difference between a theorem that gives a usable answer and a sharper argument that gives the \emph{first} usable answer. The standard alternating-series bound certifies 999 terms. Keeping the finite geometric remainder and bounding its integral certifies 500 terms and rules out 499. Those are compatible answers to different questions about the same series.
+
+\sectiontitle{Where it sits in calculus}
+A series is a limit of finite partial sums. Here the exact error is the positive integral \(\int_0^1 x^N/(1+x)\,dx\). It shrinks as \(N\) increases, which is why ruling out 499 rules out all smaller counts. This problem pulls together limits (01), error bounds (05), and definite integration (06). It points toward algorithm design, where a guarantee about the remaining error can tell software when to stop.
+
+\sectiontitle{What to notice in the Python}
+The script uses exact fractions to compare the bounds with \(1/1000\). The plotted dots are computed from floating-point partial sums and a reference value of \(\ln 2\). Near the threshold, the rational comparisons carry the proof, regardless of how the dots round on the screen.
+
+\bridge{Finite sum + integral}{Certified stopping}{Reliable algorithms}
+\tryit{If a more expensive method guarantees the same tolerance with fewer terms, what else would you need to know before calling it the better algorithm?}
+\folio{Infinite processes}

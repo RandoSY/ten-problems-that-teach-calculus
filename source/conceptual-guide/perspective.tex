@@ -1,0 +1,158 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[letterpaper,left=.78in,right=.78in,top=.69in,bottom=.70in]{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath,unicode-math}
+\usepackage{microtype}
+\usepackage{xcolor,booktabs,array,tabularx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{hyperref}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmathfont{Latin Modern Math}
+\definecolor{Ink}{HTML}{182D3A}
+\definecolor{Deep}{HTML}{102B37}
+\definecolor{Muted}{HTML}{405561}
+\definecolor{Faint}{HTML}{B7C8CA}
+\definecolor{Teal}{HTML}{006E63}
+\definecolor{Blue}{HTML}{305F96}
+\definecolor{Rust}{HTML}{9C482A}
+\definecolor{Gold}{HTML}{F6C177}
+\definecolor{TealTint}{HTML}{E8F3EF}
+\definecolor{BlueTint}{HTML}{ECF1F8}
+\definecolor{RustTint}{HTML}{F7ECE6}
+\definecolor{Fog}{HTML}{F2F5F5}
+\hypersetup{colorlinks,linkcolor=Teal,pdftitle={The Shape of Calculus},pdfsubject={Why these ten problems matter: an illustrated companion to Ten Problems That Teach Calculus},pdfdisplaydoctitle=true,bookmarksopen}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4.5pt}
+\setlength{\emergencystretch}{1.7em}
+\setlength{\fboxsep}{0pt}
+\linespread{1.07}
+\pagestyle{empty}
+\raggedbottom
+\newcommand{\smallcap}[1]{{\sffamily\bfseries\fontsize{9}{11}\selectfont\addfontfeatures{LetterSpace=8}#1}}
+\newcommand{\tagline}[1]{{\color{Accent}\smallcap{#1}}\par}
+\newcommand{\headline}[1]{{\fontsize{38}{41}\selectfont\bfseries #1\par}}
+\newcommand{\thinrule}{\noindent{\color{Faint}\rule{\linewidth}{.55pt}}\par}
+\newcommand{\folio}[1]{\par\vfill\thinrule
+  \noindent{\sffamily\small\color{Muted}The Shape of Calculus\enspace\textbar\enspace#1}
+  \hfill{\sffamily\small\bfseries\color{Accent}\ifnum\value{page}<10 0\fi\thepage}\par}
+\newcommand{\sectiontitle}[1]{\vspace{4pt}{\sffamily\bfseries\color{Accent}#1}\par\nobreak\vspace{-2pt}}
+\newcommand{\chapter}[4]{\clearpage\colorlet{Accent}{#1}\pdfbookmark[1]{#2. #3}{c#2}
+  \tagline{#2 \quad / \quad #4}\vspace{3pt}
+  {\fontsize{31}{34}\selectfont\bfseries #3\par}\vspace{3pt}\thinrule}
+\newcommand{\openq}[1]{\vspace{2pt}{\itshape\large\color{Muted}#1\par}\vspace{4pt}}
+\newcommand{\plate}[2]{\par\noindent\colorbox{Fog}{\begin{minipage}{\linewidth}
+  \vspace{7pt}\centering #1\par
+  \end{minipage}}\par
+  {\small\color{Muted}#2\par}\vspace{2pt}}
+\newcommand{\bridge}[3]{\par\vspace{4pt}\noindent
+  {\smallcap{\textcolor{Muted}{BUILD ON}}}\enspace#1
+  \hfill{\smallcap{\textcolor{Accent}{THIS IDEA}}}\enspace#2
+  \hfill{\smallcap{\textcolor{Muted}{NEXT}}}\enspace#3\par}
+\newcommand{\tryit}[1]{\par\vspace{5pt}\noindent
+ \colorbox{TealTint}{\begin{minipage}{\linewidth}
+ \vspace{5pt}\hspace{10pt}\begin{minipage}{\dimexpr\linewidth-20pt\relax}
+ {\smallcap{\textcolor{Teal}{TRANSFER TEST}}}\enspace #1
+ \end{minipage}\vspace{6pt}
+ \end{minipage}}\par}
+\newcommand{\chaplink}[2]{\hyperlink{c#1.1}{#2}}
+\newcommand{\uom}[1]{\,\mathrm{#1}}
+\tikzset{axis/.style={draw=Muted,line width=.6pt,-{Latex[length=2mm]}},
+ guide/.style={draw=Muted,densely dashed,line width=.55pt},
+ fcurve/.style={draw=Teal,line width=1.15pt},
+ bcurve/.style={draw=Blue,line width=1.05pt},
+ rcurve/.style={draw=Rust,line width=1.05pt},
+ lab/.style={font=\sffamily\small, text=Muted, inner sep=2pt},
+ lead/.style={draw=Muted,-{Latex[length=1.65mm]},line width=.6pt},
+ dot/.style={circle,fill=Teal,inner sep=1.65pt},
+ card/.style={font=\sffamily\bfseries\small,align=center,minimum height=.46in,rounded corners=1.5pt,inner xsep=9pt}}
+\begin{document}
+\color{Ink}\colorlet{Accent}{Teal}
+\pdfbookmark[0]{Start here}{start}
+\tagline{A CONCEPTUAL COMPANION TO TEN PROBLEMS THAT TEACH CALCULUS}
+\vspace{18pt}
+{\fontsize{63}{61}\selectfont\bfseries The Shape\\of Calculus\par}
+\vspace{11pt}
+{\fontsize{22}{26}\selectfont\itshape\color{Muted}Why these ten problems matter\par}
+\vspace{21pt}
+\noindent\colorbox{Deep}{\begin{minipage}{\linewidth}
+\vspace{16pt}
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{scope}[shift={(0,0)}]
+ \draw[white!55!Deep,thin] (0,0)--(4.1,0) (0,0)--(0,2.95);
+ \draw[white!95!Deep,line width=1.1pt,domain=.14:3.53,samples=65] plot (\x,{.16+.21*\x*\x});
+ \draw[Gold,line width=1.05pt] (.85,.034)--(3.54,2.294);
+ \fill[Gold] (2.0,1.0) circle (2.1pt);
+ \node[font=\sffamily\bfseries\small,text=Gold,anchor=west] at (0,-.48) {CHANGE AT AN INSTANT};
+\end{scope}
+\begin{scope}[shift={(5.55,0)}]
+ \fill[Teal!65!Deep] (0,0)--plot[domain=0:3.55,samples=50] (\x,{.44+.11*\x*\x})--(3.55,0)--cycle;
+ \fill[Gold] (3.10,0)--plot[domain=3.10:3.55,samples=18] (\x,{.44+.11*\x*\x})--(3.55,0)--cycle;
+ \draw[white!55!Deep,thin] (0,0)--(4.1,0) (0,0)--(0,2.95);
+ \draw[white!95!Deep,line width=1.1pt,domain=0:3.98,samples=65] plot (\x,{.44+.11*\x*\x});
+ \node[font=\sffamily\bfseries\small,text=Gold,anchor=west] at (0,-.48) {CHANGE OVER AN INTERVAL};
+\end{scope}
+\end{tikzpicture}
+\vspace{11pt}
+\end{minipage}}
+\vspace{17pt}
+
+{\large You can learn to differentiate an expression without knowing when a derivative is the right tool. This reader starts with that decision. It asks what each problem makes visible, and how to recognize the same idea when the story changes.\par}
+\vspace{10pt}
+{\color{Teal}\smallcap{EXPERIENCE BEFORE EQUATION}}\par
+Predict what will happen. Name the mathematical question. Then choose a formula, a graph, or a computation that can actually answer it.
+\folio{Conceptual companion}
+
+\clearpage\pdfbookmark[0]{A map of the course}{map}
+\tagline{START HERE \quad / \quad READING MAP}
+\vspace{4pt}\headline{A map of the course}
+\vspace{4pt}
+Limits give calculus a way to reason about processes we can begin but cannot literally finish. The derivative turns interval measurements into a local rate. The integral turns local contributions into a total. The Fundamental Theorem tells us how those two operations fit together.
+\vspace{4pt}
+\plate{
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[card,fill=Fog,draw=Faint,text=Ink] (L) at (7.1,3.25) {01 \quad LIMITS};
+\node[card,fill=TealTint,text=Teal] (D) at (1.73,1.80) {02--05 \enspace LOCAL CHANGE};
+\node[card,fill=BlueTint,text=Blue] (A) at (12.47,1.80) {06, 08 \enspace ACCUMULATION};
+\node[card,fill=Deep,text=white] (F) at (7.1,1.80) {07 \enspace FUNDAMENTAL\\THEOREM};
+\node[card,fill=RustTint,text=Rust] (O) at (1.73,.33) {09 \enspace RATE MODELS};
+\node[card,fill=RustTint,text=Rust] (S) at (12.47,.33) {10 \enspace SERIES ERROR};
+\draw[lead] (L.west) -| (D.north);
+\draw[lead] (L.east) -| (A.north);
+\draw[draw=Muted,{Latex[length=1.7mm]}-{Latex[length=1.7mm]}] (D.east)--(F.west);
+\draw[draw=Muted,{Latex[length=1.7mm]}-{Latex[length=1.7mm]}] (F.east)--(A.west);
+\draw[lead] (D.south)--(O.north);
+\draw[lead] (A.south)--(S.north);
+\end{tikzpicture}
+}{The branching lines show major connections, not a strict prerequisite chain. Problem 10 also uses a definite integral to bound its series remainder.}
+
+{\setlength{\tabcolsep}{6pt}\renewcommand\arraystretch{1.14}
+\begin{tabularx}{\linewidth}{@{}lXr@{}}
+\toprule
+\smallcap{NO.}&\smallcap{QUESTION}&\smallcap{PAGE}\\
+\midrule
+01 & \chaplink{01}{Can an oscillation have a limit?} & 3\\
+02 & \chaplink{02}{What happens at one instant?} & 4\\
+03 & \chaplink{03}{How do linked things change?} & 5\\
+04 & \chaplink{04}{Where is the best feasible choice?} & 6\\
+05 & \chaplink{05}{How far can local knowledge go?} & 7\\
+06 & \chaplink{06}{What do the changes add up to?} & 8\\
+07 & \chaplink{07}{How fast is a total changing?} & 9\\
+08 & \chaplink{08}{What if the interval never ends?} & 10\\
+09 & \chaplink{09}{Can a rate law predict?} & 11\\
+10 & \chaplink{10}{When can you stop adding terms?} & 12\\
+\midrule
+ & \hyperlink{toolkit.0}{The decision guide} \enspace / \enspace \hyperlink{key.0}{Transfer test notes} & 13--14\\
+\bottomrule
+\end{tabularx}}
+\vspace{6pt}
+
+{\small\color{Muted}\textbf{Use the three companions together.} Read this guide for the reason, the worked-solutions PDF for the derivation, and the numbered Python program for a plot or numerical check. Try each transfer question before looking at the notes on page 14.\par}
+\folio{Reading map}
+
+\input{lessons-a.tex}
+\input{lessons-b.tex}
+\input{decision.tex}
+\end{document}

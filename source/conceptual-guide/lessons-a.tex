@@ -1,0 +1,212 @@
+\chapter{Teal}{01}{Can an oscillation have a limit?}{FOUNDATIONS \quad LIMITS AND CONTINUITY}
+\openq{Can a quantity keep reversing direction and still settle down?}
+\plate{
+\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{scope}
+\node[lab,anchor=west,font=\sffamily\bfseries\small] at (0,2.68) {Full-height oscillation};
+\draw[axis] (0,1.25)--(6.30,1.25) node[lab,right] {\(x\)};
+\draw[axis] (0,.09)--(0,2.45);
+\draw[guide] (0,2.18)--(5.86,2.18) (0,.32)--(5.86,.32);
+\draw[fcurve,domain=5:120,samples=1250] plot ({29/\x},{1.25+.93*sin(\x r)});
+\foreach \n in {1,2,3,4}{
+ \fill[Blue] ({29/(pi/2+2*pi*\n)},2.18) circle (1.7pt);
+ \fill[Rust] ({29/(3*pi/2+2*pi*\n)},.32) circle (1.7pt);}
+\node[lab,left] at (0,2.18) {\(1\)};
+\node[lab,left] at (0,.32) {\(-1\)};
+\node[lab,below] at (0,0) {\(0\)};
+\end{scope}
+\begin{scope}[shift={(7.65,0)}]
+\node[lab,anchor=west,font=\sffamily\bfseries\small] at (0,2.68) {Same oscillation, shrinking envelope};
+\fill[TealTint] (0,1.25)--(5.80,2.23)--(5.80,.27)--cycle;
+\draw[guide] (5.80,2.23)--(0,1.25)--(5.80,.27);
+\draw[axis] (0,1.25)--(6.30,1.25) node[lab,right] {\(x\)};
+\draw[axis] (0,.09)--(0,2.45);
+\draw[fcurve,domain=5:120,samples=1250] plot ({29/\x},{1.25+4.9/\x*sin(\x r)});
+\fill[Teal] (0,1.25) circle (2pt);
+\node[lab,right] at (5.75,2.20) {\(x\)};
+\node[lab,right] at (5.75,.30) {\(-x\)};
+\node[lab,below] at (0,0) {\(0\)};
+\end{scope}
+\end{tikzpicture}
+}{Right-hand behavior of \(\sin(1/x)\) and \(x\sin(1/x)\). The blue and rust dots mark values of \(1\) and \(-1\). On the right, both sides of the envelope meet at zero. No finite plot can show every oscillation.}
+
+\sectiontitle{Why this problem earned its place}
+In many introductory exercises, substitution produces the right answer. That can leave you thinking a limit is a trick for plugging in a number. Here, both formulas are undefined at zero, and both oscillate faster as you approach it, yet only one has a limit. Because the examples differ by just a factor of \(x\), you can see what decides the matter. It's not whether the function keeps moving. It's whether its values are forced as close as you want to one number.
+
+\sectiontitle{Where it sits in calculus}
+This is the foundation for the rest of the course. Two sequences tending to the same input but giving incompatible outputs are enough to disprove a limit. A shrinking bound, such as \(\lvert x\sin(1/x)\rvert\leq\lvert x\rvert\), proves one even when the expression is hard to track. The same idea reappears when Taylor and series remainders are controlled in Problems 05 and 10.
+
+\sectiontitle{What to notice in the Python}
+The plot can show the two sequences and the shrinking envelope. It cannot inspect every point near zero. The proof comes from how the sequences are constructed and from a bound that holds for \emph{every} nonzero \(x\), not from how convincing the graph looks.
+
+\bridge{Functions}{Limits by bounding}{Derivatives and sums}
+\tryit{Without trying to graph it, find \(\lim_{x\to0}x^2\cos(1/x^3)\). Which part of the expression matters for your conclusion?}
+\folio{Foundations}
+
+\chapter{Teal}{02}{What happens at one instant?}{LOCAL CHANGE \quad THE DERIVATIVE}
+\openq{A stopwatch measures a time interval. How can it help us find a speed at one instant?}
+\plate{
+\begin{tikzpicture}[x=1.68cm,y=.235cm]
+\draw[axis] (0,0)--(7.9,0) node[lab,right] {\(t\) (s)};
+\draw[axis] (0,0)--(0,10.4) node[lab,left] {Position \(s\)};
+\begin{scope}[shift={(0.25,0)}]
+\draw[fcurve,domain=0:7.08,samples=80] plot (\x,{.54+.12*\x+.155*\x*\x});
+\draw[guide] (1.25,.93)--(1.25,0) (3.35,2.68)--(3.35,0) (6.55,7.98)--(6.55,0);
+\draw[bcurve] (1.25,.932)--(3.35,2.682);
+\draw[rcurve] (3.35,2.682)--(6.55,7.975);
+\draw[draw=Muted,densely dashed,line width=.9pt] (1.42,.446)--(6.86,6.75);
+\fill[Teal] (3.35,2.682) circle (2.3pt);
+\fill[Blue] (1.25,.932) circle (1.6pt);
+\fill[Rust] (6.55,7.975) circle (1.6pt);
+\node[lab,above left] at (2.7,1.99) {Left secant};
+\node[lab,above left] at (5.35,6.02) {Right secant};
+\node[lab,right] at (6.77,6.65) {Tangent};
+\node[lab,below] at (3.35,0) {\(3\)};
+\node[lab,below] at (1.25,0) {\(3+h_-\)};
+\node[lab,below] at (6.55,0) {\(3+h_+\)};
+\end{scope}
+\end{tikzpicture}
+}{Schematic of position versus time. Each secant uses two readings. Move both outside readings toward \(t=3\), and the two slopes tend to the tangent slope.}
+
+\sectiontitle{Why this problem earned its place}
+The cart has a simple position law, so the algebra doesn't compete with the main idea. An average velocity is available before you know any calculus. The problem asks you to shrink the interval on either side and notice that both averages go to the same number. The power rule would give the right result, \(6\uom{m/s}\), but it would skip the reason that number describes one instant.
+
+\sectiontitle{Where it sits in calculus}
+This is the definition from which differentiation rules get their meaning. Locally, a differentiable function behaves like a line, and the derivative is the slope of that line. That single idea later becomes a rate that can be related to other rates (03), a test for an interior optimum (04), and a first prediction of nearby behavior (05).
+
+\sectiontitle{What to notice in the Python}
+The program uses nonzero \(h\) in the original quotient and compares it with the simplified expression \(6+h\). For very tiny \(h\), subtracting nearly equal floating-point positions can actually make the computed quotient worse. The mathematically simpler expression also happens to be more numerically stable here.
+
+\bridge{Limits}{Instantaneous rate}{Chain rule}
+\tryit{A distance sensor provides one reading per second. How would you estimate velocity at a middle reading? What evidence would tell you whether a shorter interval improves your estimate?}
+\folio{Local change}
+
+\chapter{Teal}{03}{How do linked things change?}{LOCAL CHANGE \quad RELATED RATES}
+\openq{If the ladder's foot moves at a steady speed, does its top have to move steadily too?}
+\plate{
+\begin{tikzpicture}[x=.41cm,y=.32cm]
+\fill[TealTint] (0,0)--(6,0)--(0,8)--cycle;
+\draw[draw=Muted,line width=.75pt] (0,8.8)--(0,0)--(8.7,0);
+\draw[fcurve,line width=1.7pt] (0,8)--(6,0) node[pos=.52,above right=3pt,lab] {10 ft};
+\draw[rcurve,-{Latex[length=2mm]}] (-.68,7.76)--(-.68,5.48);
+\draw[bcurve,-{Latex[length=2mm]}] (6.22,.48)--(8.22,.48);
+\fill[Teal] (0,8) circle (2pt) (6,0) circle (2pt);
+\node[lab,left] at (0,3.2) {\(y=8\)};
+\node[lab,below] at (3.1,0) {\(x=6\)};
+\node[lab,anchor=west,text=Rust] at (.70,7.95) {\(-0.75\uom{ft/s}\)};
+\node[lab,above,text=Blue] at (7.5,.57) {\(+1\uom{ft/s}\)};
+\begin{scope}[shift={(16.4,0)},x=.71cm,y=.56cm]
+\draw[axis] (0,4.55)--(10.15,4.55) node[lab,right] {\(x\) (ft)};
+\draw[axis] (0,.05)--(0,4.95);
+\draw[fcurve,domain=0:9.75,samples=100] plot (\x,{4.55-\x/sqrt(100-\x*\x)});
+\draw[guide] (6,4.55)--(6,3.80);
+\fill[Teal] (6,3.80) circle (2.1pt);
+\node[lab,below left] at (6,3.80) {\((6,-0.75)\)};
+\node[lab,left] at (0,4.55) {\(0\)};
+\node[lab,left] at (0,2.05) {\(-2.5\)};
+\node[lab,left] at (0,.83) {\(dy/dt\)};
+\end{scope}
+\end{tikzpicture}
+}{The same fixed ladder permits many configurations and many speed ratios. The curve gives the top's vertical velocity for the same outward foot speed at different positions.}
+
+\sectiontitle{Why this problem earned its place}
+It separates \emph{how two quantities are related} from \emph{how fast they change}. You can picture one rigid triangle changing shape, but you can't infer equal endpoint speeds from a fixed ladder length. The speed ratio depends on the shape at that instant. The diagram lets you predict the sign and compare the speeds before differentiating.
+
+\sectiontitle{Where it sits in calculus}
+The chain rule applies even when neither quantity has been written explicitly as a function of time. In \(x^2+y^2=L^2\), both \(x\) and \(y\) are functions of \(t\). Differentiate that relationship first, then insert the snapshot values. If you insert \(x=6\) and \(y=8\) too early, the relationship becomes a number statement and the motion disappears. The same move returns for a changing integration limit in 07. With more variables, it leads to questions about how one change propagates through a system.
+
+\sectiontitle{What to notice in the Python}
+The program computes the top's velocity from the chain-rule formula, then checks it by moving the foot slightly forward and backward in time and recomputing the height. That second route uses geometry and a finite difference rather than the derived rate formula.
+
+\bridge{Instantaneous rate}{Coupled rates}{Composed functions}
+\tryit{The water level rises at the same speed in two tanks. One has straight sides and one widens toward the top. In which tank does maintaining that rise require a changing inflow rate, and why?}
+\folio{Local change}
+
+\chapter{Teal}{04}{Where is the best feasible choice?}{LOCAL CHANGE \quad OPTIMIZATION}
+\openq{A tiny cut makes a shallow box. A very large cut leaves almost no base. Where do the two effects balance?}
+\plate{
+\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{scope}[x=.269cm,y=.247cm]
+\fill[TealTint] (0,0) rectangle (20,12);
+\fill[Teal!23!white] (2.43,2.43) rectangle (17.57,9.57);
+\draw[guide] (2.43,2.43) rectangle (17.57,9.57);
+\foreach \x in {0,17.57}{\foreach \y in {0,9.57}{\draw[draw=Rust,fill=RustTint] (\x,\y) rectangle ++(2.43,2.43);}}
+\draw[draw=Muted,line width=.7pt] (0,0) rectangle (20,12);
+\node[lab] at (10,6) {Box base};
+\node[lab] at (1.22,10.78) {\(x\)};
+\node[lab,below] at (10,0) {20 in};
+\node[lab,left] at (0,6) {12 in};
+\end{scope}
+\begin{scope}[shift={(7.24,0)},x=1.05cm,y=.0089cm]
+\draw[axis] (-.05,0)--(6.62,0) node[lab,right] {\(x\)};
+\draw[axis] (0,0)--(0,335) node[lab,left] {\(V\)};
+\draw[fcurve,domain=0:6,samples=80] plot (\x,{\x*(12-2*\x)*(20-2*\x)});
+\draw[guide] (2.4274,0)--(2.4274,262.68);
+\fill[Teal] (2.4274,262.68) circle (2.3pt);
+\fill[Muted] (0,0) circle (1.7pt) (6,0) circle (1.7pt);
+\node[lab,above] at (2.4274,272) {Maximum};
+\node[lab,below] at (2.4274,0) {\(2.43\)};
+\node[lab,below] at (6,0) {\(6\)};
+\end{scope}
+\end{tikzpicture}
+}{The physical construction defines the domain before calculus begins. The other root of \(V'(x)=0\) is about \(8.24\) inches and does not belong on this plot of feasible cuts.}
+
+\sectiontitle{Why this problem earned its place}
+You can make the model out of a piece of paper and see the trade-off. Increasing the cut adds height while taking away base area. There is also a built-in trap. Algebra produces a stationary point that can't be built. The learner has to decide what a number means, not just calculate it.
+
+\sectiontitle{Where it sits in calculus}
+Optimization has three jobs. Specify the objective, determine the feasible domain, and justify the best candidate. A derivative finds stationary points in the interior, but endpoints and places where the derivative does not exist may also matter. Here the volume is smooth and the endpoints collapse the box. That leaves one feasible interior stationary point. Later, the same structure supports minimizing material, error, time, or cost, including in problems with several adjustable inputs.
+
+\sectiontitle{What to notice in the Python}
+The code treats roots as a list to filter, then evaluates the objective on the candidates that remain. A grid search is a useful independent check, but it can only say which \emph{sampled} cut was best. To turn the solution into a reusable method, preserve both the feasibility test and the candidate comparison.
+
+\bridge{Derivative}{Best feasible choice}{Design trade-offs}
+\tryit{You're asked to make the biggest box, but it must be no more than 2 inches deep. Which candidates now matter? Can you choose the winner without solving a new quadratic?}
+\folio{Local change}
+
+\chapter{Teal}{05}{How far can local knowledge go?}{LOCAL CHANGE \quad TAYLOR APPROXIMATION}
+\openq{If you know a function's value, slope, and second derivative at one point, what can you promise about a nearby value?}
+\plate{
+\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{scope}
+\node[lab,anchor=west,font=\sffamily\bfseries\small] at (0,2.73) {Match the function at zero};
+\draw[axis] (0,.20)--(6.32,.20) node[lab,right] {\(x\)};
+\draw[axis] (0,.20)--(0,2.52);
+\draw[fcurve,domain=-.66:.08,samples=75] plot ({8*(\x+.67)},{.43+3.55*(exp(\x)-.5)});
+\draw[bcurve,dashed,domain=-.66:.08,samples=75] plot ({8*(\x+.67)},{.43+3.55*(1+\x+\x*\x/2-.5)});
+\fill[Teal] (5.36,2.205) circle (2pt);
+\draw[guide] (5.36,.20)--(5.36,2.205);
+\node[lab,below] at (5.36,.2) {\(0\)};
+\draw[fcurve] (.27,2.13)--(.68,2.13);
+\node[lab,right] at (.78,2.13) {\(e^x\)};
+\draw[bcurve,dashed] (.27,1.83)--(.68,1.83);
+\node[lab,right] at (.78,1.83) {\(P_2(x)\)};
+\end{scope}
+\begin{scope}[shift={(7.64,0)}]
+\node[lab,anchor=west,font=\sffamily\bfseries\small] at (0,2.73) {Check how much was left out};
+\draw[axis] (0,.20)--(6.32,.20) node[lab,right] {\(x\)};
+\draw[axis] (0,.20)--(0,2.53);
+\draw[bcurve,dashed,domain=-.20:0,samples=80] plot ({29*(\x+.2)},{.20+1560*abs(\x*\x*\x)/6});
+\draw[fcurve] plot coordinates {(0.000000,2.180025) (0.072500,2.107856) (0.145000,2.037433) (0.217500,1.968739) (0.290000,1.901751) (0.362500,1.836451) (0.435000,1.772817) (0.507500,1.710830) (0.580000,1.650470) (0.652500,1.591716) (0.725000,1.534548) (0.797500,1.478944) (0.870000,1.424886) (0.942500,1.372352) (1.015000,1.321322) (1.087500,1.271774) (1.160000,1.223689) (1.232500,1.177046) (1.305000,1.131823) (1.377500,1.088000) (1.450000,1.045557) (1.522500,1.004471) (1.595000,0.964723) (1.667500,0.926290) (1.740000,0.889153) (1.812500,0.853289) (1.885000,0.818678) (1.957500,0.785298) (2.030000,0.753128) (2.102500,0.722146) (2.175000,0.692332) (2.247500,0.663663) (2.320000,0.636119) (2.392500,0.609677) (2.465000,0.584316) (2.537500,0.560014) (2.610000,0.536749) (2.682500,0.514500) (2.755000,0.493245) (2.827500,0.472961) (2.900000,0.453628) (2.972500,0.435222) (3.045000,0.417722) (3.117500,0.401106) (3.190000,0.385351) (3.262500,0.370435) (3.335000,0.356336) (3.407500,0.343032) (3.480000,0.330500) (3.552500,0.318717) (3.625000,0.307661) (3.697500,0.297310) (3.770000,0.287641) (3.842500,0.278631) (3.915000,0.270257) (3.987500,0.262497) (4.060000,0.255328) (4.132500,0.248726) (4.205000,0.242669) (4.277500,0.237134) (4.350000,0.232098) (4.422500,0.227537) (4.495000,0.223428) (4.567500,0.219749) (4.640000,0.216475) (4.712500,0.213583) (4.785000,0.211051) (4.857500,0.208853) (4.930000,0.206968) (5.002500,0.205370) (5.075000,0.204037) (5.147500,0.202945) (5.220000,0.202070) (5.292500,0.201387) (5.365000,0.200874) (5.437500,0.200506) (5.510000,0.200259) (5.582500,0.200109) (5.655000,0.200032) (5.727500,0.200004) (5.800000,0.200000)};
+\draw[guide] (2.9,.20)--(2.9,.455);
+\fill[Rust] (2.9,.45363) circle (2.1pt);
+\node[lab,below] at (2.9,.20) {\(-0.1\)};
+\node[lab,below] at (5.8,.20) {\(0\)};
+\node[lab] at (3.8,1.71) {Bound (dashed)};
+\node[lab] at (4.14,1.27) {Actual error (solid)};
+\end{scope}
+\end{tikzpicture}
+}{Agreement between the curves is hard to judge by eye near zero. A separate error plot makes the small difference visible. The bound is a guarantee, not a measurement of that difference.}
+
+\sectiontitle{Why this problem earned its place}
+The question isn't just whether you can replace an exponential by an easier expression. It's whether you can tell someone how far off the replacement could be. The example makes that distinction concrete. The quadratic gives \(0.905\), and Taylor's theorem says the error is less than \(0.000167\). You can decide whether the shortcut meets an accuracy requirement before looking up the exact function value.
+
+\sectiontitle{Where it sits in calculus}
+Differentiation first gives a local line. Taylor polynomials extend that local model by matching more derivatives. The first terms encode the value, slope, and bending near the reference point. The remainder tells you what is not captured. This is a bridge to numerical methods and power series, where knowing that a method works is different from knowing how much work is enough.
+
+\sectiontitle{What to notice in the Python}
+The program calculates its approximation without calling the exponential at the target. It then calls the library exponential to check the actual error and plots it against the bound. In a setting where the true value is unavailable, the guarantee still comes from the bound.
+
+\bridge{Local linearity}{Approximation with error}{Series}
+\tryit{You know the quadratic approximation is slightly high and at most \(0.000167\) high. Does that guarantee that \(0.905\) is correct to three decimal places? To four?}
+\folio{Local change}

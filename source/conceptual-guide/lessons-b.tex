@@ -167,7 +167,7 @@ The exponential solution and the Euler loop express the same rule differently. T
 It exposes the difference between a theorem that gives a usable answer and a sharper argument that gives the \emph{first} usable answer. The standard alternating-series bound certifies 999 terms. Keeping the finite geometric remainder and bounding its integral certifies 500 terms and rules out 499. Those are compatible answers to different questions about the same series.
 
 \sectiontitle{Where it sits in calculus}
-A series is a limit of finite partial sums. Here the exact error is the positive integral \(\int_0^1 x^N/(1+x)\,dx\). It shrinks as \(N\) increases, which is why ruling out 499 rules out all smaller counts. This problem pulls together limits (01), error bounds (05), and definite integration (06). It points toward algorithm design, where a guarantee about the remaining error can tell software when to stop.
+A series is a limit of finite partial sums. Here the exact error is the positive integral \mbox{\(\int_0^1 x^N/(1+x)\,dx\)}. It shrinks as \(N\) increases, which is why ruling out 499 rules out all smaller counts. This problem pulls together limits (01), error bounds (05), and definite integration (06). It points toward algorithm design, where a guarantee about the remaining error can tell software when to stop.
 
 \sectiontitle{What to notice in the Python}
 The script uses exact fractions to compare the bounds with \(1/1000\). The plotted dots are computed from floating-point partial sums and a reference value of \(\ln 2\). Near the threshold, the rational comparisons carry the proof, regardless of how the dots round on the screen.

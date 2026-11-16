@@ -1,7 +1,7 @@
 # Ten Problems That Teach Calculus
 ## Python companion to the worked-solutions PDF
 
-These ten small programs follow the same order as the [worked-solutions PDF](../docs/ten-problems-that-teach-calculus.pdf). See **sample-output.txt** for what a successful run prints. Each lesson shows how a step on paper becomes an operation in Python, prints the result and a check, then makes a two-panel Matplotlib figure. The supplied graphs are in **figures/**, so you can look through them before installing anything.
+These ten small programs follow the same order as the [worked-solutions PDF](../docs/ten-problems-that-teach-calculus.pdf). See **sample-output.txt** for what a successful run prints. The sample uses relative figure paths for portability. A fresh run can print absolute paths (or use a different output directory), so expect those path lines to differ in a literal comparison. The sample also omits the runner’s initial blank line. Each lesson shows how a step on paper becomes an operation in Python, prints the result and a check, then makes a two-panel Matplotlib figure. The supplied graphs are in **figures/**, so you can look through them before installing anything.
 
 The lesson scripts are ordinary Python files, not notebooks. All the calculus is in the numbered files. The shared **plot_support.py** only handles formatting, command-line options, and saving. No symbolic math package is required.
 

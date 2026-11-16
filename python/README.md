@@ -7,7 +7,7 @@ The lesson scripts are ordinary Python files, not notebooks. All the calculus is
 
 ## Run a lesson
 
-Extract the ZIP first. Open a terminal in the extracted **calculus-python** folder. Python 3.9 or newer is required. The two external packages are NumPy and Matplotlib.
+If you downloaded a ZIP, extract it first. From the repository root, open a terminal and run the commands below in the **python/** folder. The two external packages are NumPy and Matplotlib. Use Python 3.9 or newer.
 
 On Windows, using PowerShell or Command Prompt:
 

@@ -1,4 +1,4 @@
 5535b64cdc13e6d22d905a4091f87c22426733614423fc8e16a831bc7db21a2e  classroom-pilots/student-pilot-handouts.pdf
 2ab427eddcc9c067f1a6a3157f07bd2cc09534103c828fcbea878839c7b774c7  classroom-pilots/teacher-pilot-guide.pdf
 b2079faacd1ebda7330e9ac152a09dfb4d0ca2c9c7c408401b29fe7376a51458  docs/ten-problems-that-teach-calculus.pdf
-a0c906a15b86f5b9a16b380d79d856d6ec2f942cf3b5ee8eba7f7b97c0e94e4b  docs/the-shape-of-calculus.pdf
+b3b07e3eacb811b36c062cc456c348ab62d49e7ae4537f759d68efa3b7127b21  docs/the-shape-of-calculus.pdf

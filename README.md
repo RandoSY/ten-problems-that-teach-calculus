@@ -17,4 +17,4 @@ Print the A sheets separately and give them out before the B sheets. Have learne
 
 Editable XeLaTeX files are included in [source/](source/) for both readers and in [classroom-pilots/source/](classroom-pilots/source/) for the handouts and guide. Compile the main file for each reader, or the student and teacher build files for the pilots, from its own folder. Compile twice to resolve PDF bookmarks. The originals are listed in [PDF-SHA256.txt](PDF-SHA256.txt).
 
-The classroom pilots were first published on the CORE 10 [calculus-student-pilots branch](https://github.com/RandoSY/core-10/tree/calculus-student-pilots/calculus-pilots).
+The classroom pilots were first published on the CORE 10 [original pilot commit](https://github.com/RandoSY/core-10/tree/0873f46462c40f1137485cd8a5a885b80437cb1e/calculus-pilots).

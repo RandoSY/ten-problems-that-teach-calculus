@@ -1,5 +1,7 @@
 # Ten Problems That Teach Calculus
 
+![Ten Problems That Teach Calculus — Experience Before Equation. A gold tangent flashes against a teal curve above shaded area slices.](assets/calculus-cover.jpg)
+
 A compact single-variable calculus curriculum built around **Experience Before Equation**. Learn to recognize the mathematical question, work it out on paper, and see what it becomes in software.
 
 | Start here | What's inside |

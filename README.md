@@ -1,6 +1,8 @@
 # Ten Problems That Teach Calculus
 
-![Ten Problems That Teach Calculus — Experience Before Equation. A gold tangent flashes against a teal curve above shaded area slices.](assets/calculus-cover.jpg)
+![Cover for Ten Problems That Teach Calculus, with a gold tangent to a teal parabola at (2, 4) and shaded area below the curve.](assets/calculus-tangent-cover.svg)
+
+*The gold line is tangent to the teal parabola at (2, 4). The shaded slices show accumulation.*
 
 A compact single-variable calculus curriculum built around **Experience Before Equation**. Learn to recognize the mathematical question, work it out on paper, and see what it becomes in software.
 

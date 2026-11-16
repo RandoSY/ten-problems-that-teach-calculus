@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="800" viewBox="0 0 1600 800" role="img" aria-labelledby="title desc">
+<title id="title">Ten Problems That Teach Calculus — Experience Before Equation</title>
+<desc id="desc">A gold tangent to the teal parabola y = x squared at (2, 4), with the area to the left of the point shaded below the curve.</desc>
+<!-- Exact geometry: parabola y=x^2, tangent y=4x-4, contact (2,4).
+     Both use X=850+204x and Y=650-51y. -->
+<defs>
+ <linearGradient id="night" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#071522"/><stop offset="1" stop-color="#02080f"/></linearGradient>
+ <radialGradient id="ambient"><stop stop-color="#0c7e91" stop-opacity=".33"/><stop offset="1" stop-color="#07212d" stop-opacity="0"/></radialGradient>
+ <radialGradient id="flash"><stop stop-color="#fff4ad" stop-opacity=".95"/><stop offset=".09" stop-color="#ffdf8b" stop-opacity=".72"/><stop offset=".31" stop-color="#ffb33e" stop-opacity=".29"/><stop offset="1" stop-color="#ffae26" stop-opacity="0"/></radialGradient>
+ <linearGradient id="area" x1="0" x2="0" y1="1" y2="0"><stop stop-color="#0a655f" stop-opacity=".15"/><stop offset="1" stop-color="#19d3ad" stop-opacity=".48"/></linearGradient>
+ <linearGradient id="rule" x1="0" x2="1"><stop stop-color="#61ecdb"/><stop offset="1" stop-color="#61ecdb" stop-opacity="0"/></linearGradient>
+ <pattern id="grid" width="51" height="51" x="850" y="650" patternUnits="userSpaceOnUse"><path d="M 0 51 V0 H51" fill="none" stroke="#64eee0" stroke-opacity=".18" stroke-width="1.3"/></pattern>
+ <clipPath id="graph"><rect x="798" y="44" width="747" height="647" rx="20"/></clipPath>
+ <filter id="curveGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+ <filter id="lineGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<rect width="1600" height="800" rx="24" fill="url(#night)"/>
+<ellipse cx="1250" cy="459" rx="625" ry="520" fill="url(#ambient)"/>
+<rect x="25" y="25" width="1550" height="750" rx="13" fill="none" stroke="#6bcac9" stroke-opacity=".25" stroke-width="1.5"/>
+<g clip-path="url(#graph)">
+ <rect x="800" y="60" width="740" height="632" fill="url(#grid)"/>
+ <path d="M 800 650 H1540 M850 689 V66" stroke="#a0e2db" stroke-opacity=".46" stroke-width="1.5" fill="none"/>
+ <path d="M 931.6 650 L 931.6 641.84 Q 1094.8 609.2 1258 446 L 1258 650 Z" fill="url(#area)"/>
+ <g fill="none" stroke="#62f9d6" stroke-opacity=".39" stroke-width="1.35"><path d="M 972.4 650 L 972.4 631.64"/><path d="M 1013.2 650 L 1013.2 617.36"/><path d="M 1054 650 L 1054 599"/><path d="M 1094.8 650 L 1094.8 576.56"/><path d="M 1135.6 650 L 1135.6 550.04"/><path d="M 1176.4 650 L 1176.4 519.44"/><path d="M 1217.2 650 L 1217.2 484.76"/><path d="M 1258 650 L 1258 446"/></g>
+ <path d="M 799 646.8125 Q 1212.1 698.45 1625.2 -86.44" fill="none" stroke="#0efbd1" stroke-opacity=".86" stroke-width="11" filter="url(#curveGlow)"/>
+ <path d="M 1013.2 690.8 L 1564 140" fill="none" stroke="#ffb145" stroke-opacity=".66" stroke-width="9" filter="url(#lineGlow)"/>
+ <circle cx="1258" cy="446" r="87" fill="url(#flash)"/>
+ <path d="M 799 646.8125 Q 1212.1 698.45 1625.2 -86.44" fill="none" stroke="#43f5dc" stroke-width="5"/>
+ <path d="M 1013.2 690.8 L 1564 140" fill="none" stroke="#ffca69" stroke-width="3.3"/>
+ <path d="M 1228 446 H1288 M1258 416 V476" stroke="#ffcc6e" stroke-width="1.4" opacity=".56"/>
+ <circle cx="1258" cy="446" r="6.5" fill="#fff7cf"/>
+ <circle cx="1258" cy="446" r="12" stroke="#ffd888" stroke-width="1" opacity=".64" fill="none"/>
+</g>
+<g fill="#f7f3e9" font-family="Liberation Serif, Georgia, serif" font-weight="bold">
+ <text x="81" y="286" font-size="107" letter-spacing="-2">Ten Problems</text>
+ <text x="82" y="399" font-size="107" letter-spacing="-2">That Teach</text>
+ <text x="79" y="536" font-size="145" letter-spacing="-4">Calculus</text>
+</g>
+<text x="88" y="138" fill="#81e9da" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="bold" letter-spacing="4">AN ILLUSTRATED LEARNING PACK</text>
+<rect x="88" y="574" width="570" height="2" fill="url(#rule)"/>
+<text x="89" y="635" fill="#ffd18a" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" letter-spacing="3.5">EXPERIENCE BEFORE EQUATION</text>
+<g font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="bold" letter-spacing="3">
+ <circle cx="920" cy="714" r="4" fill="#ffcb71"/><text x="938" y="721" fill="#ffcc82">LOCAL RATE</text>
+ <path d="M1100 705 V724" stroke="#4d7f83"/>
+ <circle cx="1123" cy="714" r="4" fill="#53f4dc"/><text x="1141" y="721" fill="#8af2e5">ACCUMULATED CHANGE</text>
+</g>
+</svg>
